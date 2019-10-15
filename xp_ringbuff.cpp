@@ -1,7 +1,5 @@
 ﻿#include "xp_ringbuff.h"
 
-using namespace std;
-
 Ringbuf::Ringbuf(int len)
 {
     Cache.buff=new uint8_t[len];
