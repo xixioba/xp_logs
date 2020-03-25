@@ -31,10 +31,11 @@ class xp_logs
     int Cachesize;
     int Daily;
     char logpath[512];
-    int maxtotalsize=50*1024*1024;//单位 K,默认，50*1024*1024=50GB
-    int maxlogsize=30*1024*1024;//单位 K，默认，30*1024*1024GB
+    int maxtotalsize=10*1024*1024;//单位 K,默认，10*1024*1024=10GB
+    int maxlogsize=1*1024*1024;//单位 K，默认，1*1024*1024=1GB
+    char Suffix[512];
 public:
-    xp_logs(const char *path,int daily=1,int cachesize=30*1024*1024);//daily{0,1}:按天重置新日志,单位BYTE,cachesize=0,普通模式，cachesize>0,启用cachepool，数据将存入缓存中，稍后自动写入,保证缓存大小可靠，减少丢包
+    xp_logs(const char *path,const char *suffix=".log",int daily=1,int cachesize=30*1024*1024);//daily{0,1}:按天重置新日志,单位BYTE,cachesize=0,普通模式，cachesize>0,启用cachepool，数据将存入缓存中，稍后自动写入,保证缓存大小可靠，减少丢包
     ~xp_logs();
     int add(char *str,int len=0);//len==0,写入字符串，len>0，写入char *数组
     int get_size(char *filename);//获取文件大小
