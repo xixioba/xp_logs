@@ -5,14 +5,14 @@ using namespace std;
 
 static void mkdirs(const char *__path, __mode_t __mode)
 {
-    if (strlen(__path) > 255)
+    if (strlen(__path) > PATH_MAX)
     {
         return;
     }
     int ipathLength = strlen(__path);
     int ileaveLength = 0;
     int iCreatedLength = 0;
-    char szPathTemp[255] = {0};
+    char szPathTemp[PATH_MAX] = {0};
 #if defined __linux__ || defined __APPLE__
     for (int i = 0; (NULL != strchr(__path + iCreatedLength, '/')); i++)
 #elif defined _WIN32

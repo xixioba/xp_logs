@@ -17,6 +17,7 @@
     #include <dirent.h>
     #include<sys/stat.h>
     #include<sys/types.h>
+    #include <linux/limits.h>
     #define Delay(x) sleep(x);
     #define Delayms(x) usleep(x*1000);
 #else
