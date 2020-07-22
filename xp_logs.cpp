@@ -1,5 +1,30 @@
-﻿#include "xp_logs.h"
-#include <thread>
+﻿#include <thread>
+#include <time.h>
+#ifdef _WIN32
+#include <direct.h>
+#include <io.h>
+#include "dirent.h"
+#define Delay(x) Sleep(1000*x);
+#define Delayms(x) Sleep(x);
+#ifdef _WIN64
+//define something for Windows (64-bit only)
+#else
+//define something for Windows (32-bit only)
+#endif
+#elif defined __linux__ || defined __APPLE__
+#include <unistd.h>
+#include <dirent.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <linux/limits.h>
+#define Delay(x) sleep(x);
+#define Delayms(x) usleep(x*1000);
+#else
+#error "Unknown compiler"
+#endif
+
+#include "xp_logs.h"
+
 
 using namespace std;
 
@@ -169,6 +194,7 @@ char *xp_logs::get_first_file(char *path)
         free(name_list);
         return name;
     }
+    free(name_list);
     return NULL;
 }
 
@@ -189,6 +215,7 @@ char *xp_logs::get_last_file(char *path)
         free(name_list);
         return name;
     }
+    free(name_list);
     return NULL;
 }
 
