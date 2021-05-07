@@ -82,6 +82,7 @@ xp_logs::xp_logs(const char* path, const char* suffix, int daily, int cachesize)
     if (cachesize > 0) {
         Cachesize = cachesize;
         cachebuff = new Ringbuf(cachesize);
+        run();
     }
 }
 
